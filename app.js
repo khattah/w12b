@@ -5,10 +5,11 @@ const activityResult = document.getElementById("activityResult");
 activityBtn.addEventListener("click", async function () {
 
     activityResult.textContent = "Loading activity...";
+    activityBtn.disabled = true;
 
     try {
         const response = await axios.get(
-            "https://bored-api.appbrewery.com/random"
+            "http://127.0.0.1:5000/api/activity"
         );
 
         console.log(response.data);
@@ -20,6 +21,9 @@ activityBtn.addEventListener("click", async function () {
 
         activityResult.textContent =
             "Sorry, something went wrong. Please try again.";
+
+    } finally {
+        activityBtn.disabled = false;
     }
 
 });
